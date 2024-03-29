@@ -1,9 +1,9 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-//const csvFilePath = './Backend_assignment_gg_dataset - dataset.csv';
 
-// Function to read and parse CSV file
+
+
 function parseCSV(filePath) {
   return new Promise((resolve, reject) => {
     const data = [];
