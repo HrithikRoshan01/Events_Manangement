@@ -42,10 +42,10 @@ async function eventsData(nearestEvents,lat,long){
   try {
     const promises = nearestEvents.map(async (cur) => {
       try {
-        const url_forDateAndWeather = `http://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city=${cur.city}&date=${cur.date} `;
+        const url_forDateAndWeather = `https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city=${cur.city}&date=${cur.date} `;
         const weatherData = await fetchData(url_forDateAndWeather);
 
-        const url_forDistance = `http://gg-backend-assignment.azurewebsites.net/api/Distance?code=IAKvV2EvJa6Z6dEIUqqd7yGAu7IZ8gaH-a0QO6btjRc1AzFu8Y3IcQ==&latitude1=${lat}&longitude1=${long}&latitude2=${cur.latitude}&longitude2=${cur.longitude}`;
+        const url_forDistance = `https://gg-backend-assignment.azurewebsites.net/api/Distance?code=IAKvV2EvJa6Z6dEIUqqd7yGAu7IZ8gaH-a0QO6btjRc1AzFu8Y3IcQ==&latitude1=${lat}&longitude1=${long}&latitude2=${cur.latitude}&longitude2=${cur.longitude}`;
         const distanceData = await fetchData(url_forDistance);
 
         // Return the result as an object with weather and distance data
