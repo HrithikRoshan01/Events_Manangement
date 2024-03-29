@@ -84,11 +84,11 @@ async function eventsData(nearestEvents,lat,long){
 }
 
 
-app.get("/events/find",(req,res)=>{
+app.get("/",(req,res)=>{
   res.sendFile(__dirname+"/index.html")
 })
 
-app.post("/events/find", async (req, res) => {
+app.post("/", async (req, res) => {
   const lat = req.body.lat;
   const long =  req.body.long;
   const date = new Date(req.body.date);
