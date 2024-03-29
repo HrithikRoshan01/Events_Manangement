@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+    <style>
+        html, body {
+                height: 100%;
+            }
+
+        html {
+                display: table;
+                margin: auto;
+            }
+
+        body {
+                background-color: #72A0C1;
+                display: table-cell;
+                vertical-align: middle;
+            }
+        #container {
+            width: 705px;
+            height: 350px;
+            position: relative;
+            /* right: 255px;
+            white-space: pre; */
+            margin-bottom: 200px;
+        }
+        #container p{
+            font-weight: 600;
+            font-family: Sans-serif	;
+        }
+        .btn{
+            width: 700px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px ;
+            
+        }
+        .btn button{
+            border-radius: 10px;
+            width: 50px;
+            height: 30px;
+            font-size: small;
+            background-color: #5072A7;
+        }
+        button:hover{
+            background-color: aliceblue;
+        }
+
+    </style>
+</head>
+<body >
+    
+    <h1>Events</h1>
+    <div id="container"></div>
+    <div id="cal"><strong>Page:1</strong></div>
+    <div id='pageSize'><strong>Page:1</strong></div>
+    <div id='totalEvents'><strong>Page:1</strong></div>
+    <div id='totalPages'><strong>Page:1</strong></div>
+    
+    <div class="btn"> 
+        <button id="left">prev</button>
+        <button id="right">next</button>
+    </div>
+
+
+
+
+    <script>
+        const dataFromServer = <%- JSON.stringify(show,null,"\t") %>;
+        // JSON.stringify(e,null,"\t")
+        let page = 1;
+        const pageSize = 10;
+        const totalEvents = dataFromServer.length;
+        const totalPages = Math.ceil(totalEvents / pageSize);
+
+        function renderPage(pageNumber) {
+            const container = document.getElementById('container');
+            container.innerHTML = ''; // Clear previous content
+
+            const start = (pageNumber - 1) * pageSize;
+            const end = Math.min(pageNumber * pageSize, totalEvents);
+
+            for (let i = start; i < end; i++) {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = JSON.stringify(dataFromServer[i], null, 2);
+                container.appendChild(paragraph);
+            }
+
+            document.getElementById('cal').textContent = `Page: ${pageNumber}`;
+        }
+
+        renderPage(page);
+
+        document.getElementById("right").addEventListener("click", function () {
+            if (page < totalPages) {
+                page++;
+                renderPage(page);
+            }
+        });
+
+        document.getElementById("left").addEventListener("click", function () {
+            if (page > 1) {
+                page--;
+                renderPage(page);
+            }
+        });
+
+        // Display other information
+        document.getElementById('cal').textContent = `Page: ${page}`;
+        document.getElementById('pageSize').textContent = `PageSize: ${pageSize}`;
+        document.getElementById('totalEvents').textContent = `TotalEvents: ${totalEvents}`;
+        document.getElementById('totalPages').textContent = `TotalPages: ${totalPages}`;
+    </script>
+</body>
+</html>

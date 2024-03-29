@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+       html, body {
+                height: 100%;
+            }
+
+        html {
+                display: table;
+                margin: auto;
+            }
+
+        body {
+                background-color: #72A0C1;
+                display: table-cell;
+                vertical-align: middle;
+            }
+        .form{
+          display: flex;
+          flex-direction: column;
+          width: 400px;
+         
+        }
+        .form input{
+          margin-bottom: 10px;
+          height: 30px;
+          border-radius: 5px ;
+        }
+        .form button{
+          width: 100px;
+          height: 30px;
+          border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+  
+    <form action="/events/find" method="post" class="form"> 
+        <label for="lat">Lattitute</label>
+          <input type="text" name = "lat"> 
+        <label for="long"> Longitude </label>
+          <input type="text" name="long">
+        <label for="date"> Date </label>
+            <input type="date" name="date">
+        <button type="submit">Go</button>
+</body>
+
+</html>
